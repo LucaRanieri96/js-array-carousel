@@ -22,3 +22,17 @@ const images = [
   "./assets/img/04.webp",
   "./assets/img/05.webp",
 ];
+// definisco le variabili dove mettere le immagini nella dom
+const imagesElement = document.querySelector('.imgs')
+console.log(imagesElement);
+let activeImage = 0
+
+
+// definisco ciclo for per inserire le immagini una per volta dentro la dom
+for (let i = 0; i < images.length; i++) {
+  const imgSrc = images[i];
+  const imgElement = `<img class="img-fluid ${i === activeImage ? 'active' : ''}" src="${imgSrc}" alt="">`
+  console.log(imgElement);
+  // InsertAjacentHTML
+  imagesElement.insertAdjacentHTML('beforeend', imgElement)
+}
