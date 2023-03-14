@@ -38,3 +38,31 @@ for (let i = 0; i < images.length; i++) {
   imagesElement.insertAdjacentHTML('beforeend', imgElement)
 }
 
+// seleziono tutte le img per potergli dare l'active dopo 
+const slideImagesElements = document.querySelectorAll('img')  
+// seleziono il pulsante UP e creo una variabile
+const nextEl = document.querySelector('.position_up')
+// ascolto il pulsante UP
+nextEl.addEventListener('click', function () {
+  console.log('cliccato up');
+  console.log(slideImagesElements); //array[index]
+  
+  // seleziono la slide corrente
+  const currentSlide = slideImagesElements[activeImage]
+  console.log(currentSlide);
+  
+  // rimuovo dalla slide corrente la classe active
+  currentSlide.classList.remove('active')
+
+  // incremento il valore della variabile nel ciclo for sopra
+  activeImage++
+
+  // seleziono la prossima immagine
+  console.log(activeImage);
+  const nextImage = slideImagesElements[activeImage]
+
+  // e le aggiungo la classe active
+  console.log(nextImage);
+  nextImage.classList.add('active')
+
+})
