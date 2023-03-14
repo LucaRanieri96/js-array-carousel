@@ -27,21 +27,16 @@ const imagesElement = document.querySelector(".images");
 console.log(imagesElement);
 
 let activeImage = 0;
-// se l'immagine è l'ultima allora resetto l'activeImage
+
 
 // definisco ciclo for per inserire le immagini una per volta dentro la dom
 for (let i = 0; i < images.length; i++) {
-    const imgSrc = images[i];
-    const activebehavior = i === activeImage ? "active" : "";
-    const imgElement = `<img class="img-fluid ${activebehavior}" src="${imgSrc}" alt="">`;
-    console.log(imgElement);
-    // InsertAjacentHTML
-    imagesElement.insertAdjacentHTML("beforeend", imgElement);
-    if (activeImage >= images.length) {
-        activeImage = 0;
-    } else if(activeImage < 0) {
-        activeImage = images.length - 1 
-    }
+  const imgSrc = images[i];
+  const activebehavior = i === activeImage ? "active" : "";
+  const imgElement = `<img class="img-fluid ${activebehavior}" src="${imgSrc}" alt="">`;
+  console.log(imgElement);
+  // InsertAjacentHTML
+  imagesElement.insertAdjacentHTML("beforeend", imgElement);
 }
 
 // PULSANTE UP
@@ -65,6 +60,11 @@ nextEl.addEventListener("click", function () {
   // incremento il valore della variabile nel ciclo for sopra
   activeImage++;
   console.log(activeImage);
+
+  // se l'immagine è l'ultima allora resetto lo slider alla prima 
+  if (activeImage >= images.length) {
+    activeImage = 0;
+  }
 
   // seleziono la prossima immagine
   const nextImage = slideImagesElements[activeImage];
@@ -92,6 +92,10 @@ prevEl.addEventListener("click", function () {
   // riduco il valore della variabile nel ciclo for sopra
   activeImage--;
   console.log(activeImage);
+  // se l'immagine è la prima allora resetto lo slider all'ultima immagine
+  if (activeImage < 0) {
+    activeImage = images.length - 1;
+  }
 
   // seleziono la prossima immagine
   const nextImage = slideImagesElements[activeImage];
