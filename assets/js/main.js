@@ -27,15 +27,21 @@ const imagesElement = document.querySelector(".images");
 console.log(imagesElement);
 
 let activeImage = 0;
+// se l'immagine è l'ultima allora resetto l'activeImage
 
 // definisco ciclo for per inserire le immagini una per volta dentro la dom
 for (let i = 0; i < images.length; i++) {
-  const imgSrc = images[i];
-  const activebehavior = i === activeImage ? "active" : "";
-  const imgElement = `<img class="img-fluid ${activebehavior}" src="${imgSrc}" alt="">`;
-  console.log(imgElement);
-  // InsertAjacentHTML
-  imagesElement.insertAdjacentHTML("beforeend", imgElement);
+    const imgSrc = images[i];
+    const activebehavior = i === activeImage ? "active" : "";
+    const imgElement = `<img class="img-fluid ${activebehavior}" src="${imgSrc}" alt="">`;
+    console.log(imgElement);
+    // InsertAjacentHTML
+    imagesElement.insertAdjacentHTML("beforeend", imgElement);
+    if (activeImage >= images.length) {
+        activeImage = 0;
+    } else if(activeImage < 0) {
+        activeImage = images.length - 1 
+    }
 }
 
 // PULSANTE UP
@@ -89,7 +95,7 @@ prevEl.addEventListener("click", function () {
 
   // seleziono la prossima immagine
   const nextImage = slideImagesElements[activeImage];
-  
+
   // aggiungo la classe active alla prossima immagine
   console.log(nextImage);
   nextImage.classList.add("active");
